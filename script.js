@@ -5,12 +5,9 @@ function player(name) {
 }
 
 //PLAYERS
-const sean = player('Sean');
-const jackie = player('Jackie');
+const sean = player('Sean')('X');
+const jackie = player('Jackie')('O');
 
 //PLAYER CHECK
-const player1  = sean('X')
-const player2 = jackie('O')
-
-console.log(player1)
-console.log(player2)
+console.log(sean)
+console.log(jackie)
