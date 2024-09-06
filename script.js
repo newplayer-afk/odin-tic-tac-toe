@@ -13,22 +13,26 @@ const jackie = player('Jackie')('O');
 console.log(sean)
 console.log(jackie)
 
+let board = []
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
-    const board = [[],[],[]]
-    const add1 = (board, player) => board + [[player, 0, 0], [0, 0, 0], [0, 0, 0]]
-    const add2 = (board, player) => board + [[0, player, 0], [0, 0, 0], [0, 0, 0]]
-    const add3 = (board, player) => board + [[0, 0, player], [0, 0, 0], [0, 0, 0]]
-    const add4 = (board, player) => board + [[0, 0, 0], [player, 0, 0], [0, 0, 0]]
-    const add5 = (board, player) => board + [[0, 0, 0], [0, player, 0], [0, 0, 0]]
-    const add6 = (board, player) => board + [[0, 0, 0], [0, 0, player], [0, 0, 0]]
-    const add7 = (board, player) => board + [[0, 0, 0], [0, 0, 0], [player, 0, 0]]
-    const add8 = (board, player) => board + [[0, 0, 0], [0, 0, 0], [0, player, 0]]
-    const add9 = (board, player) => board + [[0, 0, 0], [0, 0, 0], [0, 0, player]]
-    return {board}
-})
+    const add1 = (player) => board + [[player, 0, 0], [0, 0, 0], [0, 0, 0]]
+    const add2 = (player) => board + [[0, player, 0], [0, 0, 0], [0, 0, 0]]
+    const add3 = (player) => board + [[0, 0, player], [0, 0, 0], [0, 0, 0]]
+    const add4 = (player) => board + [[0, 0, 0], [player, 0, 0], [0, 0, 0]]
+    const add5 = (player) => board + [[0, 0, 0], [0, player, 0], [0, 0, 0]]
+    const add6 = (player) => board + [[0, 0, 0], [0, 0, player], [0, 0, 0]]
+    const add7 = (player) => board + [[0, 0, 0], [0, 0, 0], [player, 0, 0]]
+    const add8 = (player) => board + [[0, 0, 0], [0, 0, 0], [0, player, 0]]
+    const add9 = (player) => board + [[0, 0, 0], [0, 0, 0], [0, 0, player]]
+    return { add1, add2, add3, add4, add5, add6, add7, add8, add9 };
+})();
 
-console.log(gameBoard())
+
+
+console.log(gameBoard.add1(sean))
+console.log(gameBoard.add3(jackie))
+
 /*
 HOW THE GAMEBOARD IS DESIGNED
 -----------------------------
