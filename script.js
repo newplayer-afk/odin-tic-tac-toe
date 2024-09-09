@@ -13,26 +13,28 @@ const jackie = player('Jackie')('O');
 //console.log(sean)
 //console.log(jackie)
 
-
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
     var board = [['','',''],['','',''],['','','']]
-    const add1 = (player) => board[0][0] = player;
-    const add2 = (player) => board[0][1] = player;
-    const add3 = (player) => board[0][2] = player;
-    const add4 = (player) => board[1][0] = player;
-    const add5 = (player) => board[1][1] = player;
-    const add6 = (player) => board[1][2] = player;
-    const add7 = (player) => board[2][0] = player;
-    const add8 = (player) => board[2][1] = player;
-    const add9 = (player) => board[2][2] = player;
+    const add1 = (player) => {if (board[0][0] == "") {board[0][0] = player}};
+    const add2 = (player) => {if (board[0][1] == "") {board[0][1] = player}};
+    const add3 = (player) => {if (board[0][2] == "") {board[0][2] = player}};
+    const add4 = (player) => {if (board[1][0] == "") {board[1][0] = player}};
+    const add5 = (player) => {if (board[1][1] == "") {board[1][1] = player}};
+    const add6 = (player) => {if (board[1][2] == "") {board[1][2] = player}};
+    const add7 = (player) => {if (board[2][0] == "") {board[2][0] = player}};
+    const add8 = (player) => {if (board[2][1] == "") {board[2][1] = player}};
+    const add9 = (player) => {if (board[2][2] == "") {board[2][2] = player}};
     const view = () => board
     return { add1, add2, add3, add4, add5, add6, add7, add8, add9, view};
 })();
 
 //
 
-console.log(gameBoard.add1(sean))
+gameBoard.add1(sean)
+gameBoard.add3(jackie)
+gameBoard.add4(sean)
+gameBoard.add9(jackie)
 console.log(gameBoard.view())
 
 //console.log(gameBoard.add3(jackie))
