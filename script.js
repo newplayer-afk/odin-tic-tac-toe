@@ -19,7 +19,13 @@ const gameBoard = (function(player) {
     let board = [['','',''],['','',''],['','','']]
 
     //POPULATE ELEMENTS IN ARRAY BOARD
-    const add1 = (player) => {if (board[0][0] == "") {board[0][0] = player}};
+    const add1 = (player) => {
+        if (board[0][0] == "") {
+            board[0][0] = player
+            return board
+        } else {
+            return `${player.name} cannot add that here!`
+        }};
     const add2 = (player) => {if (board[0][1] == "") {board[0][1] = player}};
     const add3 = (player) => {if (board[0][2] == "") {board[0][2] = player}};
     const add4 = (player) => {if (board[1][0] == "") {board[1][0] = player}};
@@ -74,7 +80,7 @@ const gameBoard = (function(player) {
 
     //DEFINE CHECK WIN DIAG FUNCTION
     const checkWin = (player) => {
-        let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player)
+        let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player);
         if (results != 0) {
             return `${player.name} wins!`
         } else {
@@ -88,10 +94,11 @@ const gameBoard = (function(player) {
 })();
 
 //TESTING
-gameBoard.add1(sean)
-gameBoard.add3(jackie)
-gameBoard.add4(sean)
-gameBoard.add9(jackie)
+console.log(gameBoard.add1(sean))
+console.log(gameBoard.add1(jackie))
+//gameBoard.add3(jackie)
+//gameBoard.add4(sean)
+//gameBoard.add9(jackie)
 console.log(gameBoard.checkWin(sean))
 console.log(gameBoard.view())
 
