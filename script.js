@@ -15,7 +15,10 @@ const jackie = player('Jackie')('O');
 
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
-    var board = [['','',''],['','',''],['','','']]
+    //DEFINE USER ARRAY BOARD
+    let board = [['','',''],['','',''],['','','']]
+
+    //POPULATE ELEMENTS IN ARRAY BOARD
     const add1 = (player) => {if (board[0][0] == "") {board[0][0] = player}};
     const add2 = (player) => {if (board[0][1] == "") {board[0][1] = player}};
     const add3 = (player) => {if (board[0][2] == "") {board[0][2] = player}};
@@ -25,19 +28,69 @@ const gameBoard = (function(player) {
     const add7 = (player) => {if (board[2][0] == "") {board[2][0] = player}};
     const add8 = (player) => {if (board[2][1] == "") {board[2][1] = player}};
     const add9 = (player) => {if (board[2][2] == "") {board[2][2] = player}};
+
+    //DEFINE VIEW FUNCTION
     const view = () => board
-    return { add1, add2, add3, add4, add5, add6, add7, add8, add9, view};
+
+    //DEFINE CHECK WIN ROW FUNCTION
+    const checkWinRow = (player) => {
+        //CHECK ROWS
+        if (board[0][0] == board[0][1] == board[0][2] == player) {
+            return `${player.name} wins!`
+        } else if (board[1][0] == board[1][1] == board[1][2] == player)  {
+            return `${player.name} wins!`
+        } else if (board[2][0] == board[2][1] == board[2][2] == player)  {
+            return `${player.name} wins!`
+        } else {
+            return `${player.name} does not win on rows!`
+            }
+    }
+
+    //DEFINE CHECK WIN COLUMN FUNCTION
+    const checkWinCol = (player) => {
+        //CHECK ROWS
+        if (board[0][0] == board[1][0] == board[2][0] == player) {
+            return `${player.name} wins!`
+        } else if (board[0][1] == board[1][1] == board[2][1] == player)  {
+            return `${player.name} wins!`
+        } else if (board[0][2] == board[1][2] == board[2][2] == player)  {
+            return `${player.name} wins!`
+        } else {
+            return `${player.name} does not win on columns!`
+            }
+    }
+
+    //DEFINE CHECK WIN DIAG FUNCTION
+    const checkWinDiag = (player) => {
+        //CHECK ROWS
+        if (board[0][0] == board[1][1] == board[2][2] == player) {
+            return `${player.name} wins!`
+        } else if (board[0][2] == board[1][1] == board[2][0] == player)  {
+            return `${player.name} wins!`
+        } else {
+            return `${player.name} does not win on diagonals!`
+            }
+    }
+
+    //DEFINE CHECK WIN DIAG FUNCTION
+    const checkWin = (player) => {
+        let resultRow = checkWinRow(player)
+        let resultCol = checkWinCol(player)
+        let resultDiag = checkWinDiag(player)
+        return [resultRow, resultCol, resultDiag]
+    }
+
+    //RETURN ADD TO ARRAY BOARD FUNCTIONS
+    return { add1, add2, add3, add4, add5, add6, add7, add8, add9, view, checkWin};
 })();
 
-//
-
+//TESTING
 gameBoard.add1(sean)
 gameBoard.add3(jackie)
 gameBoard.add4(sean)
 gameBoard.add9(jackie)
+console.log(gameBoard.checkWin(sean))
 console.log(gameBoard.view())
-
-//console.log(gameBoard.add3(jackie))
 
 /*
 HOW THE GAMEBOARD IS DESIGNED
