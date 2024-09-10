@@ -36,13 +36,13 @@ const gameBoard = (function(player) {
     const checkWinRow = (player) => {
         //CHECK ROWS
         if (board[0][0] == board[0][1] == board[0][2] == player) {
-            return `${player.name} wins!`
+            return 1
         } else if (board[1][0] == board[1][1] == board[1][2] == player)  {
-            return `${player.name} wins!`
+            return 1
         } else if (board[2][0] == board[2][1] == board[2][2] == player)  {
-            return `${player.name} wins!`
+            return 1
         } else {
-            return `${player.name} does not win on rows!`
+            return 0
             }
     }
 
@@ -50,13 +50,13 @@ const gameBoard = (function(player) {
     const checkWinCol = (player) => {
         //CHECK ROWS
         if (board[0][0] == board[1][0] == board[2][0] == player) {
-            return `${player.name} wins!`
+            return 1
         } else if (board[0][1] == board[1][1] == board[2][1] == player)  {
-            return `${player.name} wins!`
+            return 1
         } else if (board[0][2] == board[1][2] == board[2][2] == player)  {
-            return `${player.name} wins!`
+            return 1
         } else {
-            return `${player.name} does not win on columns!`
+            return 0
             }
     }
 
@@ -64,20 +64,23 @@ const gameBoard = (function(player) {
     const checkWinDiag = (player) => {
         //CHECK ROWS
         if (board[0][0] == board[1][1] == board[2][2] == player) {
-            return `${player.name} wins!`
+            return 1
         } else if (board[0][2] == board[1][1] == board[2][0] == player)  {
-            return `${player.name} wins!`
+            return 1
         } else {
-            return `${player.name} does not win on diagonals!`
+            return 0
             }
     }
 
     //DEFINE CHECK WIN DIAG FUNCTION
     const checkWin = (player) => {
-        let resultRow = checkWinRow(player)
-        let resultCol = checkWinCol(player)
-        let resultDiag = checkWinDiag(player)
-        return [resultRow, resultCol, resultDiag]
+        let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player)
+        if (results != 0) {
+            return `${player.name} wins!`
+        } else {
+            return `${player.name} does not win!`
+        }
+        
     }
 
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
