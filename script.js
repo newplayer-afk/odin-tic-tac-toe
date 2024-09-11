@@ -126,17 +126,22 @@ To start the game, you will have an empty array
 [0] [0] [0] 
 [0] [0] [0] 
 
-To play a turn, for instance, X plays in slot 1. You will add the following array to the empty gameboard:
+To play a turn, for instance, X plays in slot 1. You will set the following element in the empty gameboard to the player name:
 
-[0] [0] [0]   [X] [0] [0]   [X] [0] [0] 
-[0] [0] [0] + [0] [0] [0] = [0] [0] [0] 
-[0] [0] [0]   [0] [0] [0]   [0] [0] [0] 
+[0] [0] [0]     [Player1] [0] [0]
+[0] [0] [0]  => [0] [0] [0]
+[0] [0] [0]     [0] [0] [0]
 
-To play the second turn, for instance, O plays in slot 3. You will add the following array:
 
-[X] [0] [0]   [0] [0] [O]   [X] [0] [O] 
-[0] [0] [0] + [0] [0] [0] = [0] [0] [0] 
-[0] [0] [0]   [0] [0] [0]   [0] [0] [0] 
+To play the second turn, for instance, O plays in slot 3. You will set the following element in the empty gameboard:
+
+[Player1] [0] [0]     [Player1] [0] [Player2]
+[0] [0] [0]  => [0] [0] [0]
+[0] [0] [0]     [0] [0] [0]
 
 Hence the function names: add1, add2, add3... signifying adding that player's object to that particular cell.
+
+The view function will allow the user to see the current state of the board
+
+The checkWin function will allow the script to determine whether or not someone has won the game
 */
