@@ -22,9 +22,9 @@ const gameBoard = (function(player) {
     const add1 = (player) => {
         if (board[0][0] == "") {
             board[0][0] = player
-            return board
+            return `${player.name} added an ${player.choice} in position 1!`
         } else {
-            return `${player.name} cannot add that here!`
+            return `${player.name} cannot add an ${player.choice} in position 1!`
         }};
     const add2 = (player) => {if (board[0][1] == "") {board[0][1] = player}};
     const add3 = (player) => {if (board[0][2] == "") {board[0][2] = player}};
