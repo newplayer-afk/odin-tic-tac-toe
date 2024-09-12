@@ -1,3 +1,9 @@
+// THE PROJECT IN QUESTION:
+// https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
+// Currently, we are creating the game using factory functions and are required to
+// use as little global variables as possible.
+// In this case, we achieved this by only defining the players, sean and jackie.
+
 //PLAYER FACTORY FUNCTION
 function player(name) {
     return function marker(choice){
