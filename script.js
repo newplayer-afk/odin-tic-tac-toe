@@ -9,10 +9,6 @@ function player(name) {
 const sean = player('Sean')('X');
 const jackie = player('Jackie')('O');
 
-//PLAYER CHECK
-//console.log(sean)
-//console.log(jackie)
-
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
     //DEFINE USER ARRAY BOARD
@@ -81,7 +77,7 @@ const gameBoard = (function(player) {
     //DEFINE CHECK WIN DIAG FUNCTION
     const checkWin = (player) => {
         let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player);
-        if (results != 0) {
+        if (results > 0) {
             return `${player.name} wins!`
         } else {
             return `${player.name} does not win!`
@@ -89,18 +85,13 @@ const gameBoard = (function(player) {
         
     }
 
+    const reset = () => {board = [['','',''],['','',''],['','','']]}
+
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
-    return { add1, add2, add3, add4, add5, add6, add7, add8, add9, view, checkWin};
+    return { add1, add2, add3, add4, add5, add6, add7, add8, add9, view, checkWin, reset};
 })();
 
-//TESTING
-console.log(gameBoard.add1(sean))
-console.log(gameBoard.add1(jackie))
-//gameBoard.add3(jackie)
-//gameBoard.add4(sean)
-//gameBoard.add9(jackie)
-console.log(gameBoard.checkWin(sean))
-console.log(gameBoard.view())
+
 
 /*
 HOW THE GAMEBOARD IS DESIGNED
