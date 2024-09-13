@@ -19,11 +19,11 @@ const jackie = player('Jackie')('O');
 const gameBoard = (function(player) {
     //DEFINE USER ARRAY BOARD
     let board = [['','',''],['','',''],['','','']]
-    let spots = {one : board[0][0], two : board[0][1], three : board[0][2], four : board[1][0], five : board[1][1], six : board[1][2], seven : board[2][0], eight : board[2][1], nine : board[2][2]}
+    let spots = [board[0][0],board[0][1],board[0][2],board[1][0],board[1][1],board[1][2],board[2][0],board[2][1],board[2][2]]
 
     //POPULATE ELEMENTS IN ARRAY BOARD
     const add = (player,num) => {
-        if (Object.values(spots)[num-1] == "") {
+        if (spots[num-1] == "") {
             return `${player.name} added an ${player.choice} in position ${num}!`
         } else {
             return `${player.name} cannot add an ${player.choice} in position ${number} because there is already a marker in that spot!`
