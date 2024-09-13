@@ -1,5 +1,7 @@
-HOW THE GAMEBOARD IS DESIGNED
------------------------------
+# ODIN TIC-TAC-TOE
+
+## HOW THE GAMEBOARD IS DESIGNED
+
 Each cell in the gameboard will hold a particular value. If the cell is empty or 0, it has not been played yet.
 To play a turn, you will add a player's object to that cell.
 
@@ -41,3 +43,10 @@ The view function will allow the user to see the current state of the board
 The reset function will allow the user to wipe the board clean
 
 The checkWin function will check all the win conditions to determine whether or not someone has won the game
+
+## CURRENT TO-DO LIST:
+
+- Add object that will determine the flow of the game
+- Test full game in console.log()
+- Add displayController function when full game is implemented
+- Create turn randomizer function
