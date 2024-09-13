@@ -18,22 +18,22 @@ const jackie = player('Jackie')('O');
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
     //DEFINE USER ARRAY BOARD
-    let board = [['','',''],['','',''],['','','']]
-    let spots = [board[0][0],board[0][1],board[0][2],board[1][0],board[1][1],board[1][2],board[2][0],board[2][1],board[2][2]]
+    let board = ['', '', '', '' ,'' ,'' ,'', '', '']
 
     //POPULATE ELEMENTS IN ARRAY BOARD
     const add = (player,num) => {
-        if (spots[num-1] == "") {
+        if (board[num]== "") {
+            board[num] = player.choice
             return `${player.name} added an ${player.choice} in position ${num}!`
         } else {
-            return `${player.name} cannot add an ${player.choice} in position ${number} because there is already a marker in that spot!`
+            return `${player.name} cannot add an ${player.choice} in position ${num} because there is already a marker in that spot!`
         }};
     
     //DEFINE VIEW FUNCTION
     const view = () => board
 
     //DEFINE CHECK WIN ROW FUNCTION
-    const checkWinRow = (player) => {
+    /*const checkWinRow = (player) => {
         //CHECK ROWS
         if (board[0][0] == board[0][1] == board[0][2] == player) {
             return 1
@@ -81,12 +81,12 @@ const gameBoard = (function(player) {
             return `${player.name} does not win!`
         }
         
-    }
+    }*/
 
     const reset = () => {board = [['','',''],['','',''],['','','']]}
 
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
-    return {add, view, checkWin, reset};
+    return {add, view, reset};
 })();
 
 
