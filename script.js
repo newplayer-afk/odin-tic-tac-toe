@@ -34,15 +34,16 @@ const gameBoard = (function(player) {
 
     //DEFINE CHECK WIN ROW FUNCTION
     const checkWinRow = (player) => {
+        check = 0
         //CHECK ROWS
         if (board[0] == board[1] == board[2] == player) {
-            return 1
+            check += 1
         } else if (board[3] == board[4] == board[5] == player)  {
-            return 1
+            check += 1
         } else if (board[6] == board[7] == board[8] == player)  {
-            return 1
+            check += 1
         } else {
-            return 0
+            return check
             }
     }
 
@@ -50,13 +51,13 @@ const gameBoard = (function(player) {
     const checkWinCol = (player) => {
         //CHECK ROWS
         if (board[0] == board[3] == board[6] == player) {
-            return 1
+            check += 1
         } else if (board[1] == board[4] == board[7] == player)  {
-            return 1
+            check += 1
         } else if (board[2] == board[5] == board[8] == player)  {
-            return 1
+            check += 1
         } else {
-            return 0
+            return check
             }
     }
 
@@ -64,18 +65,18 @@ const gameBoard = (function(player) {
     const checkWinDiag = (player) => {
         //CHECK ROWS
         if (board[0] == board[4] == board[8] == player) {
-            return 1
+            check += 1
         } else if (board[2] == board[4] == board[6] == player)  {
-            return 1
+            check += 1
         } else {
-            return 0
+            check += 1
             }
+            return check
     }
 
     //DEFINE CHECK WIN DIAG FUNCTION
     const checkWin = (player) => {
         let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player);
-        console.log(results)
         if (results > 0) {
             return `${player.name} wins!`
         } else {
