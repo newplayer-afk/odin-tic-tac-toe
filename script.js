@@ -49,6 +49,7 @@ const gameBoard = (function(player) {
 
     //DEFINE CHECK WIN COLUMN FUNCTION
     const checkWinCol = (player) => {
+        check = 0
         //CHECK ROWS
         if (board[0] == board[3] == board[6] == player) {
             check += 1
@@ -63,6 +64,7 @@ const gameBoard = (function(player) {
 
     //DEFINE CHECK WIN DIAG FUNCTION
     const checkWinDiag = (player) => {
+        check = 0
         //CHECK ROWS
         if (board[0] == board[4] == board[8] == player) {
             check += 1
@@ -78,9 +80,9 @@ const gameBoard = (function(player) {
     const checkWin = (player) => {
         let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player);
         if (results > 0) {
-            return `${player.name} wins!`
+            return `${player.name} wins! Reseting board now..`
         } else {
-            return `${player.name} does not win!`
+            return `${player.name} does not win! Continue playing!`
         }
         
     }
