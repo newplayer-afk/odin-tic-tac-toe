@@ -76,15 +76,28 @@ const gameBoard = (function(player) {
 
     //DEFINE CHECK WIN DIAG FUNCTION
     const checkWin = (player) => {
+        //CHECK WIN CONDITIONS, results should be non-zero if a player has met a win conditions.
         let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player);
+        //COUNT HOW MANY CELLS WERE PLAYED
+        let count = 0
+        for (i in board) {
+            if (board[i] != '') {
+                count += 1
+            }
+        }
+        //IF ANY 1 WIN CONDITION IS MET, WIN THE GAME
         if (results > 0) {
             return `${player.name} wins!`
+        //IF ALL CELLS HAVE VALUES
+        //AND NO ONE HAS WON VIA ANY WIN CONDITION
+        } else if (count == 9 && results == 0){
+            return "The game has ended in a tie!"
+        //IF NOT ALL CELLS WERE PLAYED, AND NO WIN CONDITION HAS BEEN MET
         } else {
             return `${player.name} does not win!`
         }
         
     }
-
     //DEFINE VIEW FUNCTION
     const view = () => board
 
