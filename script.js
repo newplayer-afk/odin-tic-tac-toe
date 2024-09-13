@@ -19,24 +19,16 @@ const jackie = player('Jackie')('O');
 const gameBoard = (function(player) {
     //DEFINE USER ARRAY BOARD
     let board = [['','',''],['','',''],['','','']]
+    let spots = [board[0][0],board[0][1],board[0][2],board[1][0],board[1][1],board[1][2],board[2][0],board[2][1],board[2][2]]
 
     //POPULATE ELEMENTS IN ARRAY BOARD
-    const add1 = (player) => {
-        if (board[0][0] == "") {
-            board[0][0] = player
-            return `${player.name} added an ${player.choice} in position 1!`
+    const add = (player,num) => {
+        if (spots[num-1] == "") {
+            return `${player.name} added an ${player.choice} in position ${num}!`
         } else {
-            return `${player.name} cannot add an ${player.choice} in position 1!`
+            return `${player.name} cannot add an ${player.choice} in position ${number} because there is already a marker in that spot!`
         }};
-    const add2 = (player) => {if (board[0][1] == "") {board[0][1] = player}};
-    const add3 = (player) => {if (board[0][2] == "") {board[0][2] = player}};
-    const add4 = (player) => {if (board[1][0] == "") {board[1][0] = player}};
-    const add5 = (player) => {if (board[1][1] == "") {board[1][1] = player}};
-    const add6 = (player) => {if (board[1][2] == "") {board[1][2] = player}};
-    const add7 = (player) => {if (board[2][0] == "") {board[2][0] = player}};
-    const add8 = (player) => {if (board[2][1] == "") {board[2][1] = player}};
-    const add9 = (player) => {if (board[2][2] == "") {board[2][2] = player}};
-
+    
     //DEFINE VIEW FUNCTION
     const view = () => board
 
@@ -94,7 +86,7 @@ const gameBoard = (function(player) {
     const reset = () => {board = [['','',''],['','',''],['','','']]}
 
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
-    return { add1, add2, add3, add4, add5, add6, add7, add8, add9, view, checkWin, reset};
+    return {add, view, checkWin, reset};
 })();
 
 
