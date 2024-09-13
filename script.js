@@ -80,9 +80,9 @@ const gameBoard = (function(player) {
     const checkWin = (player) => {
         let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player);
         if (results > 0) {
-            return `${player.name} wins! Reseting board now..`
+            return `${player.name} wins!`
         } else {
-            return `${player.name} does not win! Continue playing!`
+            return `${player.name} does not win!`
         }
         
     }
