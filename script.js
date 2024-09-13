@@ -29,8 +29,6 @@ const gameBoard = (function(player) {
             return `${player.name} cannot add an ${player.choice} in position ${num} because there is already a marker in that spot!`
         }};
     
-    //DEFINE VIEW FUNCTION
-    const view = () => board
 
     //DEFINE CHECK WIN ROW FUNCTION
     const checkWinRow = (player) => {
@@ -87,7 +85,11 @@ const gameBoard = (function(player) {
         
     }
 
-    const reset = () => {board = [['','',''],['','',''],['','','']]}
+    //DEFINE VIEW FUNCTION
+    const view = () => board
+
+    //DEFINE RESET FUNCTION
+    const reset = () => board = [['','',''],['','',''],['','','']]
 
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
     return {add, view, checkWin, reset};
@@ -105,13 +107,7 @@ To play a turn, you will add a player's object to that cell.
 [4] [5] [6]
 [7] [8] [9]
 
-This will be created by 3 arrays
-1.) [1], [2]. [3]
-2.) [4], [5], [6]
-3.) [7], [8], [9]
-
-
-Despite it being held in a series of 1x3 arrays, it will make sense when visualizing this graphic.
+Despite it being held in a 1x9 array on the javascript side, we will visualize this as a 3x3 grid when styling the actual webpage.
 
 To start the game, you will have an empty array
 
@@ -132,9 +128,9 @@ To play the second turn, for instance, O plays in slot 3. You will set the follo
 [0] [0] [0]  => [0] [0] [0]
 [0] [0] [0]     [0] [0] [0]
 
-Hence the function names: add1, add2, add3... signifying adding that player's object to that particular cell.
-
 The view function will allow the user to see the current state of the board
 
-The checkWin function will allow the script to determine whether or not someone has won the game
+The reset function will allow the user to wipe the board clean
+
+The checkWin function will check all the win conditions to determine whether or not someone has won the game
 */
