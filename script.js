@@ -22,8 +22,8 @@ const gameBoard = (function(player) {
 
     //POPULATE ELEMENTS IN ARRAY BOARD
     const add = (player,num) => {
-        if (board[num]== "") {
-            board[num] = player.choice
+        if (board[num-1]== "") {
+            board[num-1] = player
             return `${player.name} added an ${player.choice} in position ${num}!`
         } else {
             return `${player.name} cannot add an ${player.choice} in position ${num} because there is already a marker in that spot!`
@@ -33,13 +33,13 @@ const gameBoard = (function(player) {
     const view = () => board
 
     //DEFINE CHECK WIN ROW FUNCTION
-    /*const checkWinRow = (player) => {
+    const checkWinRow = (player) => {
         //CHECK ROWS
-        if (board[0][0] == board[0][1] == board[0][2] == player) {
+        if (board[0] == board[1] == board[2] == player) {
             return 1
-        } else if (board[1][0] == board[1][1] == board[1][2] == player)  {
+        } else if (board[3] == board[4] == board[5] == player)  {
             return 1
-        } else if (board[2][0] == board[2][1] == board[2][2] == player)  {
+        } else if (board[6] == board[7] == board[8] == player)  {
             return 1
         } else {
             return 0
@@ -49,11 +49,11 @@ const gameBoard = (function(player) {
     //DEFINE CHECK WIN COLUMN FUNCTION
     const checkWinCol = (player) => {
         //CHECK ROWS
-        if (board[0][0] == board[1][0] == board[2][0] == player) {
+        if (board[0] == board[3] == board[6] == player) {
             return 1
-        } else if (board[0][1] == board[1][1] == board[2][1] == player)  {
+        } else if (board[1] == board[4] == board[7] == player)  {
             return 1
-        } else if (board[0][2] == board[1][2] == board[2][2] == player)  {
+        } else if (board[2] == board[5] == board[8] == player)  {
             return 1
         } else {
             return 0
@@ -63,9 +63,9 @@ const gameBoard = (function(player) {
     //DEFINE CHECK WIN DIAG FUNCTION
     const checkWinDiag = (player) => {
         //CHECK ROWS
-        if (board[0][0] == board[1][1] == board[2][2] == player) {
+        if (board[0] == board[4] == board[8] == player) {
             return 1
-        } else if (board[0][2] == board[1][1] == board[2][0] == player)  {
+        } else if (board[2] == board[4] == board[6] == player)  {
             return 1
         } else {
             return 0
@@ -75,18 +75,19 @@ const gameBoard = (function(player) {
     //DEFINE CHECK WIN DIAG FUNCTION
     const checkWin = (player) => {
         let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player);
+        console.log(results)
         if (results > 0) {
             return `${player.name} wins!`
         } else {
             return `${player.name} does not win!`
         }
         
-    }*/
+    }
 
     const reset = () => {board = [['','',''],['','',''],['','','']]}
 
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
-    return {add, view, reset};
+    return {add, view, checkWin, reset};
 })();
 
 
