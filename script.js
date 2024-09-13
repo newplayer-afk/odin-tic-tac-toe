@@ -4,12 +4,16 @@
 // use as little global variables as possible.
 // In this case, we achieved this by only defining the players, sean and jackie.
 
+//========================================================================================================================
+
 //PLAYER FACTORY FUNCTION
 function player(name) {
     return function marker(choice){
         return {name, choice}
     }
 }
+
+//========================================================================================================================
 
 //CREATE PLAYERS
 const sean = player('Sean')('X');
@@ -108,3 +112,9 @@ const gameBoard = (function(player) {
     return {add, view, checkWin, reset};
 })();
 
+//========================================================================================================================
+
+const  displayController = (function(player) {
+
+    return {};
+})();
