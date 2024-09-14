@@ -118,3 +118,30 @@ const  displayController = (function(player) {
 
     return {};
 })();
+
+/*
+Creating flowControl Logic:
+
+Function should take two arguments, Player 1, and Player 2
+
+If player 1 plays their turn, the next player (Player 2) should have their turn.
+
+2 variables
+currentTurn
+nextTurn
+
+if it is Player 1's turn
+currentTurn = P1
+nextTurn = P2
+
+if it is Player 2's turn
+currentTurn = P2
+nextTurn = P1
+
+If Player 2 tries to play on Player 1's turn, you should get an error:
+"It is not player.name's turn to play!"
+
+The same happens vice-versa
+
+function should be named startGame()
+*/
