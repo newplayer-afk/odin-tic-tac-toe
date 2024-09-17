@@ -47,21 +47,6 @@ const gameBoard = (function(player) {
         }};
     
 
-    //DEFINE CHECK WIN ROW FUNCTION
-    const checkWinRow = (player) => {
-        check = 0
-        //CHECK ROWS
-        if (board[0] == board[1] == board[2] == player) {
-            check += 1
-        } else if (board[3] == board[4] == board[5] == player)  {
-            check += 1
-        } else if (board[6] == board[7] == board[8] == player)  {
-            check += 1
-        } else {
-            return check
-            }
-    }
-    
    
     //DEFINE VIEW FUNCTION
     const view = () => board
