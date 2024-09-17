@@ -20,8 +20,6 @@ function player(name) {
 //CREATE PLAYERS
 const sean = player('Sean')('X')('1');
 const jackie = player('Jackie')('O')('2');
-const josh = player('Josh')('X')('1')
-const dylan = player('Dylan')('O')('2')
 const slots = [document.getElementById('one'), document.getElementById('two'), document.getElementById('three'), document.getElementById('four'), document.getElementById('five'), document.getElementById('six'), document.getElementById('seven'), document.getElementById('eight'), document.getElementById('nine')]
 
 
