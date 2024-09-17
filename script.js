@@ -20,6 +20,12 @@ function player(name) {
 //CREATE PLAYERS
 const sean = player('Sean')('X')('1');
 const jackie = player('Jackie')('O')('2');
+const josh = player('Josh')('X')('1')
+const dylan = player('Dylan')('O')('2')
+const slots = [document.getElementById('one'), document.getElementById('two'), document.getElementById('three'), document.getElementById('four'), document.getElementById('five'), document.getElementById('six'), document.getElementById('seven'), document.getElementById('eight'), document.getElementById('nine')]
+
+
+
 
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
@@ -32,8 +38,10 @@ const gameBoard = (function(player) {
         //CHECK IF BOARD IS EMPTY, AND IT IS THEIR TURN
         if (board[num-1]== "" && player.turn == `${turn}`) {
             board[num-1] = player
+            slots[num-1].textContent = `${player.choice}`
             //ADJUST GAME TURN ACCORDINGLY
             player.turn%2 == 0 ? turn -=1 : turn +=1
+
             return `${player.name} added an ${player.choice} in position ${num}!`
         //IF THE BOARD IS NOT EMPTY
         } else if (board[num-1] != ""){
