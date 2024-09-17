@@ -44,9 +44,17 @@ The reset function will allow the user to wipe the board clean
 
 The checkWin function will check all the win conditions to determine whether or not someone has won the game
 
+## CONTROL FLOW LOGIC
+The current turn must match the player's turn:
+
+For instance, if Sean is player 1, and Jackie is player 2
+
+To start the game, if Jackie tries to play, Jackie will not be able to place her marker 
+on the board since it is not her turn.
+
+If Sean tries to play, he will be allowed to since player.turn == 1 which is equal to the current game's turn.
+
 ## CURRENT TO-DO LIST:
 
-- Add object that will determine the flow of the game
-- Test full game in console.log()
 - Add displayController function when full game is implemented
 - Create turn randomizer function
