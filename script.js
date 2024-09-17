@@ -33,11 +33,7 @@ const gameBoard = (function(player) {
         if (board[num-1]== "" && player.turn == `${turn}`) {
             board[num-1] = player
             //ADJUST GAME TURN ACCORDINGLY
-            if (player.turn%2 == 0) {
-                turn -=1
-            } else {
-                turn +=1
-            }
+            player.turn%2 == 0 ? turn -=1 : turn +=1
             return `${player.name} added an ${player.choice} in position ${num}!`
         //IF THE BOARD IS NOT EMPTY
         } else if (board[num-1] != ""){
