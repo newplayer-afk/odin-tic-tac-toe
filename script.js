@@ -10,7 +10,7 @@
 function player(name) {
     return function marker(choice){
         return function turn(number){
-            return {name, choice, turn}
+            return {name, choice, number}
         } 
     }
 }
