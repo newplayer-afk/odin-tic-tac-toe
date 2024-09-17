@@ -9,15 +9,17 @@
 //PLAYER FACTORY FUNCTION
 function player(name) {
     return function marker(choice){
-        return {name, choice}
+        return function turn(number){
+            return {name, choice, turn}
+        } 
     }
 }
 
 //========================================================================================================================
 
 //CREATE PLAYERS
-const sean = player('Sean')('X');
-const jackie = player('Jackie')('O');
+const sean = player('Sean')('X')('1');
+const jackie = player('Jackie')('O')('2');
 
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
