@@ -9,8 +9,8 @@
 //PLAYER FACTORY FUNCTION
 function player(name) {
     return function marker(choice){
-        return function turn(number){
-            return {name, choice, number}
+        return function order(turn){
+            return {name, choice, turn}
         } 
     }
 }
@@ -25,14 +25,26 @@ const jackie = player('Jackie')('O')('2');
 const gameBoard = (function(player) {
     //DEFINE USER ARRAY BOARD
     let board = ['', '', '', '' ,'' ,'' ,'', '', '']
+    let turn = 1
 
     //POPULATE ELEMENTS IN ARRAY BOARD
     const add = (player,num) => {
-        if (board[num-1]== "") {
+        //CHECK IF BOARD IS EMPTY, AND IT IS THEIR TURN
+        if (board[num-1]== "" && player.turn == `${turn}`) {
             board[num-1] = player
+            //ADJUST GAME TURN ACCORDINGLY
+            if (player.turn%2 == 0) {
+                turn -=1
+            } else {
+                turn +=1
+            }
             return `${player.name} added an ${player.choice} in position ${num}!`
-        } else {
+        //IF THE BOARD IS NOT EMPTY
+        } else if (board[num-1] != ""){
             return `${player.name} cannot add an ${player.choice} in position ${num} because there is already a marker in that spot!`
+        //IF IT IS NOT THE CURRENT PLAYER'S TURN
+        } else if (player.turn != turn){
+            return 'It is not your turn to play'
         }};
     
 
@@ -108,10 +120,13 @@ const gameBoard = (function(player) {
     const view = () => board
 
     //DEFINE RESET FUNCTION
-    const reset = () => board = [['','',''],['','',''],['','','']]
+    const reset = () => board = ['', '', '', '' ,'' ,'' ,'', '', '']
+
+    //DEFINE TURN FUNCTION
+    const whosTurn = () => turn
 
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
-    return {add, view, checkWin, reset};
+    return {add, view, checkWin, reset, whosTurn};
 })();
 
 //========================================================================================================================
