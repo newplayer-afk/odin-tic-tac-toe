@@ -124,7 +124,12 @@ const gameBoard = (function(player) {
     const view = () => board
 
     //DEFINE RESET FUNCTION
-    const reset = () => board = ['', '', '', '' ,'' ,'' ,'', '', '']
+    const reset = () => {
+        board = ['', '', '', '' ,'' ,'' ,'', '', '']
+        for (i in slots) {
+            slots[i].textContent = ""
+        }
+    }
 
     //DEFINE TURN FUNCTION
     const whosTurn = () => turn
