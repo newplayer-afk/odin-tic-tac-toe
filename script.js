@@ -32,7 +32,7 @@ const gameBoard = (function(player) {
     const add = (player,num) => {
         //CHECK IF BOARD IS EMPTY, AND IT IS THEIR TURN
         if (board[num-1]== "" && player.turn == `${turn}`) {
-            board[num-1] = player
+            board[num-1] = player.choice
             slots[num-1].textContent = `${player.choice}`
             //ADJUST GAME TURN ACCORDINGLY
             player.turn%2 == 0 ? turn -=1 : turn +=1
@@ -46,74 +46,9 @@ const gameBoard = (function(player) {
             return 'It is not your turn to play'
         }};
     
-
-    //DEFINE CHECK WIN ROW FUNCTION
-    const checkWinRow = (player) => {
-        check = 0
-        //CHECK ROWS
-        if (board[0] == board[1] == board[2] == player) {
-            check += 1
-        } else if (board[3] == board[4] == board[5] == player)  {
-            check += 1
-        } else if (board[6] == board[7] == board[8] == player)  {
-            check += 1
-        } else {
-            return check
-            }
-    }
-
-    //DEFINE CHECK WIN COLUMN FUNCTION
-    const checkWinCol = (player) => {
-        check = 0
-        //CHECK ROWS
-        if (board[0] == board[3] == board[6] == player) {
-            check += 1
-        } else if (board[1] == board[4] == board[7] == player)  {
-            check += 1
-        } else if (board[2] == board[5] == board[8] == player)  {
-            check += 1
-        } else {
-            return check
-            }
-    }
-
-    //DEFINE CHECK WIN DIAG FUNCTION
-    const checkWinDiag = (player) => {
-        check = 0
-        //CHECK ROWS
-        if (board[0] == board[4] == board[8] == player) {
-            check += 1
-        } else if (board[2] == board[4] == board[6] == player)  {
-            check += 1
-        } else {
-            check += 1
-            }
-            return check
-    }
-
+    
     //DEFINE CHECK WIN DIAG FUNCTION
     const checkWin = (player) => {
-        //CHECK WIN CONDITIONS, results should be non-zero if a player has met a win conditions.
-        let results = checkWinRow(player) + checkWinCol(player) + checkWinDiag(player);
-        //COUNT HOW MANY CELLS WERE PLAYED
-        let count = 0
-        for (i in board) {
-            if (board[i] != '') {
-                count += 1
-            }
-        }
-        //IF ANY 1 WIN CONDITION IS MET, WIN THE GAME
-        if (results > 0) {
-            return `${player.name} wins!`
-        //IF ALL CELLS HAVE VALUES
-        //AND NO ONE HAS WON VIA ANY WIN CONDITION
-        } else if (count == 9 && results == 0){
-            return "The game has ended in a tie!"
-        //IF NOT ALL CELLS WERE PLAYED, AND NO WIN CONDITION HAS BEEN MET
-        } else {
-            return `${player.name} does not win!`
-        }
-        
     }
     //DEFINE VIEW FUNCTION
     const view = () => board
