@@ -36,7 +36,6 @@ const gameBoard = (function(player) {
             slots[num-1].textContent = `${player.choice}`
             //ADJUST GAME TURN ACCORDINGLY
             player.turn%2 == 0 ? turn -=1 : turn +=1
-
             return `${player.name} added an ${player.choice} in position ${num}!`
         //IF THE BOARD IS NOT EMPTY
         } else if (board[num-1] != ""){
@@ -62,8 +61,13 @@ const gameBoard = (function(player) {
     //DEFINE TURN FUNCTION
     const whosTurn = () => turn
 
+    //DEFINE CHECK WIN FUNCTION
+    const checkWin = () => {
+        
+    }
+
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
-    return {add, view, reset, whosTurn};
+    return {add, view, reset, whosTurn, checkWin};
 })();
 
 //========================================================================================================================
