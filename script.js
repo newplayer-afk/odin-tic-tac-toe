@@ -40,7 +40,7 @@ const gameBoard = (function(player) {
             player.turn%2 == 0 ? turn -=1 : turn +=1
             return `${player.name} added an ${player.choice} in position ${num}!`
         //IF THE BOARD IS NOT EMPTY
-        } else if (board[num-1] != ""){
+        } else if (board[slot] != ""){
             return `${player.name} cannot add an ${player.choice} in position ${num} because there is already a marker in that spot!`
         //IF IT IS NOT THE CURRENT PLAYER'S TURN
         } else if (player.turn != turn){
@@ -64,8 +64,24 @@ const gameBoard = (function(player) {
     const whosTurn = () => turn
 
     //DEFINE CHECK WIN FUNCTION
-    const checkWin = () => {
-
+    const checkWin = (player) => {
+        //TRACK WIN CONDITIONS
+        let win = 0
+        
+        //CHECK CONDITIONS
+        const rows = [[board[0], board[1], board[2]],[[board[3],board[4],board[5]]],[board[6],board[7],board[8]]]
+        const cols = [[board[0], board[3], board[6]],[[board[1],board[4],board[7]]],[board[2],board[5],board[8]]]
+        const diags = [[board[0],board[4],board[8]],[board[2],board[4],board[6]]]
+        const allEqual = arr => arr.every( i => i === arr[0])
+        check  = (condition)  => {
+            for (i in condition) {
+                allEqual(condition[i])
+                win += 1
+            }
+        }
+        check(rows)
+        check(cols)
+        check(diags)
     }
 
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
@@ -78,3 +94,13 @@ const  displayController = (function(player) {
 
     return {};
 })();
+
+/*
+TEST WINS
+gameBoard.add(sean, 1)
+gameBoard.add(jackie, 4)
+gameBoard.add(sean, 2)
+gameBoard.add(jackie, 5)
+gameBoard.add(sean, 3)
+gameBoard.checkWin(sean)
+*/
