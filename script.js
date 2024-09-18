@@ -25,7 +25,8 @@ const boardDOM = [document.getElementById('one'), document.getElementById('two')
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
     //DEFINE USER ARRAY BOARD
-    let board = ['', '', '', '' ,'' ,'' ,'', '', '']
+    let empty = {name: 'empty', choice: 'empty', turn: 'empty'}
+    let board = [' ', ' ', ' ', ' ' ,' ' ,' ' ,' ', ' ', ' ']
     let turn = 1
 
     //POPULATE ELEMENTS IN ARRAY BOARD
@@ -33,14 +34,14 @@ const gameBoard = (function(player) {
         //TRANSLATE NUMBER TO ARRAY NUMBER (NUM -> BOARD SLOT)
         slot = num - 1
         //CHECK IF BOARD IS EMPTY, AND IT IS THEIR TURN
-        if (board[slot]== "" && player.turn == `${turn}`) {
+        if (board[slot]== " " && player.turn == `${turn}`) {
             board[slot] = player
             boardDOM[slot].textContent = `${player.choice}`
             //ADJUST GAME TURN ACCORDINGLY
             player.turn%2 == 0 ? turn -=1 : turn +=1
             return `${player.name} added an ${player.choice} in position ${num}!`
         //IF THE BOARD IS NOT EMPTY
-        } else if (board[slot] != ""){
+        } else if (board[slot] != " "){
             return `${player.name} cannot add an ${player.choice} in position ${num} because there is already a marker in that spot!`
         //IF IT IS NOT THE CURRENT PLAYER'S TURN
         } else if (player.turn != turn){
@@ -54,7 +55,7 @@ const gameBoard = (function(player) {
 
     //DEFINE RESET FUNCTION
     const reset = () => {
-        board = ['', '', '', '' ,'' ,'' ,'', '', '']
+        board = [' ', ' ', ' ', ' ' ,' ' ,' ' ,' ', ' ', ' ']
         for (i in boardDOM) {
             boardDOM[i].textContent = ""
         }
@@ -72,16 +73,32 @@ const gameBoard = (function(player) {
         const rows = [[board[0], board[1], board[2]],[[board[3],board[4],board[5]]],[board[6],board[7],board[8]]]
         const cols = [[board[0], board[3], board[6]],[[board[1],board[4],board[7]]],[board[2],board[5],board[8]]]
         const diags = [[board[0],board[4],board[8]],[board[2],board[4],board[6]]]
-        const allEqual = arr => arr.every( i => i === arr[0])
+
+        /*================================================================================================================
+        THEORY: ADD A WORK AROUND
+        IF WE CAN HAVE AN EMPTY OBJECT THAT SITS IN PLACE OF "", 
+        THEN THE FALSE POSITIVES WOULD GO AWAY.
+        ================================================================================================================*/
+        function allEqual(arr) {
+            return new Set(arr).size == 1;
+          }
         check  = (condition)  => {
             for (i in condition) {
                 allEqual(condition[i])
+                console.log(condition[i])
+                console.log(allEqual(condition[i]))
                 win += 1
             }
         }
         check(rows)
         check(cols)
         check(diags)
+        if (win > 0) {
+            console.log(win)
+            return `${player.name} has won!`
+        } else {
+            return 'No one has won yet!'
+        }
     }
 
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
@@ -102,5 +119,14 @@ gameBoard.add(jackie, 4)
 gameBoard.add(sean, 2)
 gameBoard.add(jackie, 5)
 gameBoard.add(sean, 3)
+gameBoard.checkWin(sean)
+gameBoard.checkWin(jackie)
+
+TEST FALSE POSITIVES
+gameBoard.add(sean, 1)
+gameBoard.add(jackie, 4)
+gameBoard.add(sean, 2)
+gameBoard.add(jackie, 5)
+gameBoard.add(sean, 8)
 gameBoard.checkWin(sean)
 */
