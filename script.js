@@ -82,17 +82,15 @@ const gameBoard = (function(player) {
         function allEqual(arr) {
             return new Set(arr).size == 1;
           }
-        check  = (condition)  => {
-            for (i in condition) {
-                allEqual(condition[i])
-                console.log(condition[i])
-                console.log(allEqual(condition[i]))
-                win += 1
-            }
-        }
-        check(rows)
-        check(cols)
-        check(diags)
+        rows.forEach((row) => {
+
+        })
+        cols.forEach((cols) => {
+
+        })
+        diags.forEach((diag) => {
+
+        })
         if (win > 0) {
             console.log(win)
             return `${player.name} has won!`
@@ -112,8 +110,8 @@ const  displayController = (function(player) {
     return {};
 })();
 
+/*TEST WINS */
 /*
-TEST WINS
 gameBoard.add(sean, 1)
 gameBoard.add(jackie, 4)
 gameBoard.add(sean, 2)
@@ -121,12 +119,16 @@ gameBoard.add(jackie, 5)
 gameBoard.add(sean, 3)
 gameBoard.checkWin(sean)
 gameBoard.checkWin(jackie)
+gameBoard.reset()
+*/
 
-TEST FALSE POSITIVES
+/*TEST FALSE POSITIVES*/
+/*
 gameBoard.add(sean, 1)
 gameBoard.add(jackie, 4)
 gameBoard.add(sean, 2)
 gameBoard.add(jackie, 5)
 gameBoard.add(sean, 8)
 gameBoard.checkWin(sean)
+gameBoard.reset()
 */
