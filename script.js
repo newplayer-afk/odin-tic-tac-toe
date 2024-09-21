@@ -35,7 +35,7 @@ const gameBoard = (function(player) {
         slot = num - 1
         //CHECK IF BOARD IS EMPTY, AND IT IS THEIR TURN
         if (board[slot]== " " && player.turn == `${turn}`) {
-            board[slot] = player
+            board[slot] = `${player.choice}`
             boardDOM[slot].textContent = `${player.choice}`
             //ADJUST GAME TURN ACCORDINGLY
             player.turn%2 == 0 ? turn -=1 : turn +=1
@@ -66,24 +66,22 @@ const gameBoard = (function(player) {
 
     //DEFINE CHECK WIN FUNCTION
     const checkWin = (player) => {
-        //TRACK WIN CONDITIONS
+        //TRACK IF CONDITIONS HAVE BEEN MET
         let win = 0
         
-        //CHECK CONDITIONS
+        //DEFINE WIN CONDITIONS
         const rows = [[board[0], board[1], board[2]],[[board[3],board[4],board[5]]],[board[6],board[7],board[8]]]
         const cols = [[board[0], board[3], board[6]],[[board[1],board[4],board[7]]],[board[2],board[5],board[8]]]
         const diags = [[board[0],board[4],board[8]],[board[2],board[4],board[6]]]
-
-        /*================================================================================================================
-        THEORY: ADD A WORK AROUND
-        IF WE CAN HAVE AN EMPTY OBJECT THAT SITS IN PLACE OF "", 
-        THEN THE FALSE POSITIVES WOULD GO AWAY.
-        ================================================================================================================*/
-        function allEqual(arr) {
-            return new Set(arr).size == 1;
-          }
+        const allEqual = arr => arr.every(val => val === arr[0]);
+        
+    
+        //FOR EACH ROW, CHECK IF THEY ARE ALL EQUAL, AND NOT EMPTY
+        //ASSIGN A POINT TO WIN
         rows.forEach((row) => {
-
+             if (allEqual(row) == true && row[0] != '' && row[0] === player.choice) {
+                win += 1
+             }
         })
         cols.forEach((cols) => {
 
@@ -92,10 +90,9 @@ const gameBoard = (function(player) {
 
         })
         if (win > 0) {
-            console.log(win)
             return `${player.name} has won!`
         } else {
-            return 'No one has won yet!'
+            return `${player.name} has not won yet!`
         }
     }
 
@@ -117,6 +114,7 @@ gameBoard.add(jackie, 4)
 gameBoard.add(sean, 2)
 gameBoard.add(jackie, 5)
 gameBoard.add(sean, 3)
+gameBoard.view()
 gameBoard.checkWin(sean)
 gameBoard.checkWin(jackie)
 gameBoard.reset()
