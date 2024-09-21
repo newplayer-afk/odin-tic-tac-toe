@@ -101,6 +101,7 @@ const gameBoard = (function(player) {
                 win += 1
              }
         })
+        //CHECK IF WIN, RETURN WIN STATEMENT
         if (win > 0) {
             return `${player.name} has won by ${condition}!`
         } else {
@@ -118,52 +119,3 @@ const  displayController = (function(player) {
 
     return {};
 })();
-
-/*TEST WINS BY ROWS*/
-/*
-gameBoard.add(sean, 1)
-gameBoard.add(jackie, 4)
-gameBoard.add(sean, 2)
-gameBoard.add(jackie, 5)
-gameBoard.add(sean, 3)
-gameBoard.view()
-gameBoard.checkWin(sean)
-gameBoard.checkWin(jackie)
-gameBoard.reset()
-*/
-
-/*TEST FALSE POSITIVES*/
-/*
-gameBoard.add(sean, 1)
-gameBoard.add(jackie, 4)
-gameBoard.add(sean, 2)
-gameBoard.add(jackie, 5)
-gameBoard.add(sean, 8)
-gameBoard.checkWin(sean)
-gameBoard.reset()
-*/
-
-/*TEST WINS BY COLUMNS*/
-/*
-gameBoard.add(sean, 1)
-gameBoard.add(jackie, 2)
-gameBoard.add(sean, 4)
-gameBoard.add(jackie, 5)
-gameBoard.add(sean, 7)
-gameBoard.view()
-gameBoard.checkWin(sean)
-gameBoard.checkWin(jackie)
-gameBoard.reset()
-*/
-
-/*TEST WINS BY COLUMNS*/
-/*
-gameBoard.add(sean, 1)
-gameBoard.add(jackie, 4)
-gameBoard.add(sean, 5)
-gameBoard.add(jackie, 7)
-gameBoard.add(sean, 9)
-gameBoard.checkWin(sean)
-gameBoard.checkWin(jackie)
-gameBoard.reset()
-*/
