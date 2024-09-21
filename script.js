@@ -68,6 +68,7 @@ const gameBoard = (function(player) {
     const checkWin = (player) => {
         //TRACK IF CONDITIONS HAVE BEEN MET
         let win = 0
+        let cond = ''
         
         //DEFINE WIN CONDITIONS
         const rows = [[board[0], board[1], board[2]],[[board[3],board[4],board[5]]],[board[6],board[7],board[8]]]
@@ -76,21 +77,32 @@ const gameBoard = (function(player) {
         const allEqual = arr => arr.every(val => val === arr[0]);
         
     
-        //FOR EACH ROW, CHECK IF THEY ARE ALL EQUAL, AND NOT EMPTY
+        //FOR EACH ROW, CHECK IF THEY ARE ALL EQUAL, NOT EMPTY, AND MATCH PLAYER CHOICE
         //ASSIGN A POINT TO WIN
         rows.forEach((row) => {
              if (allEqual(row) == true && row[0] != '' && row[0] === player.choice) {
+                condition = 'rows'
                 win += 1
              }
         })
-        cols.forEach((cols) => {
-
+        //FOR EACH COL, CHECK IF THEY ARE ALL EQUAL, NOT EMPTY, AND MATCH PLAYER CHOICE
+        //ASSIGN A POINT TO WIN
+        cols.forEach((col) => {
+            if (allEqual(col) == true && col[0] != '' && col[0] === player.choice) {
+                condition = 'columns'
+                win += 1
+             }
         })
+        //FOR EACH DIAG, CHECK IF THEY ARE ALL EQUAL, NOT EMPTY, AND MATCH PLAYER CHOICE
+        //ASSIGN A POINT TO WIN
         diags.forEach((diag) => {
-
+            if (allEqual(diag) == true && diag[0] != '' && diag[0] === player.choice) {
+                condition = 'diagonals'
+                win += 1
+             }
         })
         if (win > 0) {
-            return `${player.name} has won!`
+            return `${player.name} has won by ${condition}!`
         } else {
             return `${player.name} has not won yet!`
         }
