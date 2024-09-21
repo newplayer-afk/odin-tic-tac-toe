@@ -61,6 +61,47 @@ name, choice, turn
 
 This will allow us to keep track of game control flow and what marker to update the webpage with.
 
+## TEST WINS BY ROWS 
+
+gameBoard.add(sean, 1)
+gameBoard.add(jackie, 4)
+gameBoard.add(sean, 2)
+gameBoard.add(jackie, 5)
+gameBoard.add(sean, 3)
+gameBoard.view()
+gameBoard.checkWin(sean)
+gameBoard.checkWin(jackie)
+
+## TEST WINS BY COLUMNS
+
+gameBoard.add(sean, 1)
+gameBoard.add(jackie, 2)
+gameBoard.add(sean, 4)
+gameBoard.add(jackie, 5)
+gameBoard.add(sean, 7)
+gameBoard.checkWin(sean)
+gameBoard.checkWin(jackie)
+
+
+## TEST WINS BY COLUMNS
+
+gameBoard.add(sean, 1)
+gameBoard.add(jackie, 4)
+gameBoard.add(sean, 5)
+gameBoard.add(jackie, 7)
+gameBoard.add(sean, 9)
+gameBoard.checkWin(sean)
+gameBoard.checkWin(jackie)
+
+## TEST FALSE POSITIVES
+
+gameBoard.add(sean, 1)
+gameBoard.add(jackie, 4)
+gameBoard.add(sean, 2)
+gameBoard.add(jackie, 5)
+gameBoard.add(sean, 8)
+gameBoard.checkWin(sean)
+gameBoard.checkWin(jackie)
 
 ## CURRENT TO-DO LIST:
 
