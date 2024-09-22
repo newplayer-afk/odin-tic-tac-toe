@@ -116,10 +116,19 @@ const gameBoard = (function(player) {
 
 const  displayController = (function(player) {
     let currentPlayer = {}
+    let players = [sean, jackie]
     let turn = 1
+    // CHECK WHICH PLAYER'S TURN IT IS
+    for (const name in players) {
+        if (players[name].turn == turn) {
+            currentPlayer = players[name]
+        }
+    }
     for (const i in boardDOM) {
         boardDOM[i].addEventListener('click', () => {
+            turn == 1 ? turn +=1 : turn -=1
             console.log('hi')
+            console.log(players[0].turn)
         })
     }
     return {};
