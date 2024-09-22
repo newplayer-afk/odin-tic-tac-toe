@@ -1,3 +1,5 @@
+//========================================================================================================================
+
 // THE PROJECT IN QUESTION:
 // https://www.theodinproject.com/lessons/node-path-javascript-tic-tac-toe
 // Currently, we are creating the game using factory functions and are required to
@@ -22,6 +24,8 @@ const sean = player('Sean')('X')('2');
 const jackie = player('Jackie')('O')('1');
 const boardDOM = [document.getElementById('one'), document.getElementById('two'), document.getElementById('three'), document.getElementById('four'), document.getElementById('five'), document.getElementById('six'), document.getElementById('seven'), document.getElementById('eight'), document.getElementById('nine')];
 let currentPlayer = {}
+
+//========================================================================================================================
 
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
@@ -77,7 +81,7 @@ const gameBoard = (function(player) {
     const checkWin = (player) => {
         //TRACK IF CONDITIONS HAVE BEEN MET
         let win = 0
-        let cond = ''
+        let condition = ''
         
         //DEFINE WIN CONDITIONS
         const rows = [[board[0], board[1], board[2]],[[board[3],board[4],board[5]]],[board[6],board[7],board[8]]]
@@ -129,10 +133,12 @@ const  displayController = (function() {
    boardDOM.forEach((ele) => {
     ele.addEventListener('click', () => {
         spot = boardDOM.indexOf(ele)
-        gameBoard.updateTurn()
+        //CHECK IF ELEMENT IS EMPTY
+        if (ele.textContent == '') {
+            gameBoard.updateTurn()
+        }
         gameBoard.add(currentPlayer, spot+1)
         console.log(`${currentPlayer.name} played a ${currentPlayer.choice} in spot ${ele.id}.`)
-
      })
    })
     return {};
