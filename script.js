@@ -21,12 +21,14 @@ function player(name) {
 const sean = player('Sean')('X')('2');
 const jackie = player('Jackie')('O')('1');
 const boardDOM = [document.getElementById('one'), document.getElementById('two'), document.getElementById('three'), document.getElementById('four'), document.getElementById('five'), document.getElementById('six'), document.getElementById('seven'), document.getElementById('eight'), document.getElementById('nine')];
+let currentPlayer = {}
 
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
     //DEFINE USER ARRAY BOARD
     let board = [' ', ' ', ' ', ' ' ,' ' ,' ' ,' ', ' ', ' ']
     let turn = 1
+    let players = [sean, jackie]
 
     //POPULATE ELEMENTS IN ARRAY BOARD
     const add = (player,num) => {
@@ -36,8 +38,6 @@ const gameBoard = (function(player) {
         if (board[slot]== " " && player.turn == `${turn}`) {
             board[slot] = `${player.choice}`
             boardDOM[slot].textContent = `${player.choice}`
-            //ADJUST GAME TURN ACCORDINGLY
-            player.turn%2 == 0 ? turn -=1 : turn +=1
             return `${player.name} added an ${player.choice} in position ${num}!`
         //IF THE BOARD IS NOT EMPTY
         } else if (board[slot] != " "){
@@ -45,9 +45,19 @@ const gameBoard = (function(player) {
         //IF IT IS NOT THE CURRENT PLAYER'S TURN
         } else if (player.turn != turn){
             return 'It is not your turn to play'
-        }};
+        }
+    };
     
-
+    //DEFINE UPDATE TURN FUNCTION
+    const updateTurn = () => {
+        turn == 1 ? turn +=1 : turn -=1
+        for (const name in players) {
+            if (players[name].turn == turn) {
+                currentPlayer = players[name]
+                console.log(`The player who's playing next is ${currentPlayer.name}`)
+            }
+        }
+    }
    
     //DEFINE VIEW FUNCTION
     const view = () => board
@@ -109,34 +119,20 @@ const gameBoard = (function(player) {
     }
 
     //RETURN ADD TO ARRAY BOARD FUNCTIONS
-    return {add, view, reset, whosTurn, checkWin};
+    return {add, view, reset, whosTurn, checkWin, updateTurn};
 })();
 
 //========================================================================================================================
 
-const  displayController = (function(player) {
-    let currentPlayer = {}
-    let players = [sean, jackie]
-    let turn = 1
-    // CHECK WHICH PLAYER'S TURN IT IS
-    const updateTurn = () => {
-        for (const name in players) {
-            if (players[name].turn == turn) {
-                currentPlayer = players[name]
-                console.log(`The player who's playing next is ${currentPlayer.name}`)
-            }
-        }
-    }
-    updateTurn()
-    
+const  displayController = (function() {
     //ADD EVENT LISTENERS FOR EACH TILE
    boardDOM.forEach((ele) => {
     ele.addEventListener('click', () => {
         spot = boardDOM.indexOf(ele)
+        gameBoard.updateTurn()
         gameBoard.add(currentPlayer, spot+1)
         console.log(`${currentPlayer.name} played a ${currentPlayer.choice} in spot ${ele.id}.`)
-        turn == 1 ? turn +=1 : turn -=1
-        updateTurn()
+
      })
    })
     return {};
