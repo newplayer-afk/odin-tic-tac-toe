@@ -132,6 +132,8 @@ const  displayController = (function(player) {
     //ADD EVENT LISTENERS FOR EACH TILE
    boardDOM.forEach((ele) => {
     ele.addEventListener('click', () => {
+        spot = boardDOM.indexOf(ele)
+        gameBoard.add(currentPlayer, spot+1)
         console.log(`${currentPlayer.name} played a ${currentPlayer.choice} in spot ${ele.id}.`)
         turn == 1 ? turn +=1 : turn -=1
         updateTurn()
