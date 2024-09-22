@@ -123,15 +123,16 @@ const  displayController = (function(player) {
         for (const name in players) {
             if (players[name].turn == turn) {
                 currentPlayer = players[name]
-                console.log(`The player who's going next is ${currentPlayer.name}`)
+                console.log(`The player who's playing next is ${currentPlayer.name}`)
             }
         }
     }
+    updateTurn()
     
     //ADD EVENT LISTENERS FOR EACH TILE
    boardDOM.forEach((ele) => {
     ele.addEventListener('click', () => {
-        console.log(ele)
+        console.log(`${currentPlayer.name} played a ${currentPlayer.choice} in spot ${ele.id}.`)
         turn == 1 ? turn +=1 : turn -=1
         updateTurn()
      })
