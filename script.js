@@ -119,17 +119,22 @@ const  displayController = (function(player) {
     let players = [sean, jackie]
     let turn = 1
     // CHECK WHICH PLAYER'S TURN IT IS
-    for (const name in players) {
-        if (players[name].turn == turn) {
-            currentPlayer = players[name]
-            console.log(`The player who's turn it is first is ${currentPlayer.name}`)
+    const updateTurn = () => {
+        for (const name in players) {
+            if (players[name].turn == turn) {
+                currentPlayer = players[name]
+                console.log(`The player who's going next is ${currentPlayer.name}`)
+            }
         }
     }
+    
     //ADD EVENT LISTENERS FOR EACH TILE
-    for (const i in boardDOM) {
-        boardDOM[i].addEventListener('click', () => {
-           gameBoard.add(currentPlayer, i+1)
-        })
-    }
+   boardDOM.forEach((ele) => {
+    ele.addEventListener('click', () => {
+        console.log(ele)
+        turn == 1 ? turn +=1 : turn -=1
+        updateTurn()
+     })
+   })
     return {};
 })();
