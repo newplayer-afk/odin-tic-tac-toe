@@ -103,7 +103,11 @@ gameBoard.add(sean, 8)
 gameBoard.checkWin(sean)
 gameBoard.checkWin(jackie)
 
-## CURRENT TO-DO LIST:
+## TEST TIE 
 
+
+
+## CURRENT TO-DO LIST:
+- Add tie feature
 - Add displayController function when full game is implemented
 - Create turn randomizer function

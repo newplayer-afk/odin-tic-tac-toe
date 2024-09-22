@@ -18,14 +18,13 @@ function player(name) {
 //========================================================================================================================
 
 //CREATE PLAYERS
-const sean = player('Sean')('X')('1');
-const jackie = player('Jackie')('O')('2');
-const boardDOM = [document.getElementById('one'), document.getElementById('two'), document.getElementById('three'), document.getElementById('four'), document.getElementById('five'), document.getElementById('six'), document.getElementById('seven'), document.getElementById('eight'), document.getElementById('nine')]
+const sean = player('Sean')('X')('2');
+const jackie = player('Jackie')('O')('1');
+const boardDOM = [document.getElementById('one'), document.getElementById('two'), document.getElementById('three'), document.getElementById('four'), document.getElementById('five'), document.getElementById('six'), document.getElementById('seven'), document.getElementById('eight'), document.getElementById('nine')];
 
 //GAMEBOARD FACTORY FUNCTION
 const gameBoard = (function(player) {
     //DEFINE USER ARRAY BOARD
-    let empty = {name: 'empty', choice: 'empty', turn: 'empty'}
     let board = [' ', ' ', ' ', ' ' ,' ' ,' ' ,' ', ' ', ' ']
     let turn = 1
 
@@ -116,6 +115,5 @@ const gameBoard = (function(player) {
 //========================================================================================================================
 
 const  displayController = (function(player) {
-
     return {};
 })();
