@@ -115,5 +115,12 @@ const gameBoard = (function(player) {
 //========================================================================================================================
 
 const  displayController = (function(player) {
+    let currentPlayer = {}
+    let turn = 1
+    for (const i in boardDOM) {
+        boardDOM[i].addEventListener('click', () => {
+            console.log('hi')
+        })
+    }
     return {};
 })();
