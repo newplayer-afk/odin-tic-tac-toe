@@ -136,9 +136,9 @@ const  displayController = (function() {
         //CHECK IF ELEMENT IS EMPTY
         if (ele.textContent == '') {
             gameBoard.updateTurn()
-        }
-        gameBoard.add(currentPlayer, spot+1)
-        console.log(`${currentPlayer.name} played a ${currentPlayer.choice} in spot ${ele.id}.`)
+        }   
+        console.log(gameBoard.add(currentPlayer, spot+1))
+        console.log(gameBoard.checkWin(currentPlayer))
      })
    })
     return {};
