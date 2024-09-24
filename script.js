@@ -82,18 +82,20 @@ const gameBoard = (function(player) {
         //TRACK IF CONDITIONS HAVE BEEN MET
         let win = 0
         let condition = ''
+        let cellsPlayed = 0;
         
         //DEFINE WIN CONDITIONS
-        const rows = [[board[0], board[1], board[2]],[[board[3],board[4],board[5]]],[board[6],board[7],board[8]]]
-        const cols = [[board[0], board[3], board[6]],[[board[1],board[4],board[7]]],[board[2],board[5],board[8]]]
+        const rows = [[board[0], board[1], board[2]],[board[3],board[4],board[5]],[board[6],board[7],board[8]]]
+        const cols = [[board[0], board[3], board[6]],[board[1],board[4],board[7]],[board[2],board[5],board[8]]]
         const diags = [[board[0],board[4],board[8]],[board[2],board[4],board[6]]]
-        const allEqual = arr => arr.every(val => val === arr[0]);
+        //FIX CONDITION TO CHECK IF EVERY VALUE IS THE SAME, NOT EMPTY, AND THE SAME AS PLAYER CHOICE
+        const winCondCheck = arr => arr.every(val => val === arr[0] && val !== ' ' && val == player.choice);
         
     
         //FOR EACH ROW, CHECK IF THEY ARE ALL EQUAL, NOT EMPTY, AND MATCH PLAYER CHOICE
         //ASSIGN A POINT TO WIN
         rows.forEach((row) => {
-             if (allEqual(row) == true && row[0] != '' && row[0] === player.choice) {
+             if (winCondCheck(row)) {
                 condition = 'rows'
                 win += 1
              }
@@ -101,7 +103,7 @@ const gameBoard = (function(player) {
         //FOR EACH COL, CHECK IF THEY ARE ALL EQUAL, NOT EMPTY, AND MATCH PLAYER CHOICE
         //ASSIGN A POINT TO WIN
         cols.forEach((col) => {
-            if (allEqual(col) == true && col[0] != '' && col[0] === player.choice) {
+            if (winCondCheck(col)) {
                 condition = 'columns'
                 win += 1
              }
@@ -109,14 +111,24 @@ const gameBoard = (function(player) {
         //FOR EACH DIAG, CHECK IF THEY ARE ALL EQUAL, NOT EMPTY, AND MATCH PLAYER CHOICE
         //ASSIGN A POINT TO WIN
         diags.forEach((diag) => {
-            if (allEqual(diag) == true && diag[0] != '' && diag[0] === player.choice) {
+            if (winCondCheck(diag)) {
                 condition = 'diagonals'
                 win += 1
              }
         })
+        
+        // CHECK IF ALL TILES HAVE BEEN PLAYED
+        for (const cell in board) {
+            if (board[cell] !== ' ') {
+                cellsPlayed += 1
+            }
+        }
+
         //CHECK IF WIN, RETURN WIN STATEMENT
         if (win > 0) {
             return `${player.name} has won by ${condition}!`
+        } else if (win == 0 && cellsPlayed == 9) {
+            return 'This game is a tie!'
         } else {
             return `${player.name} has not won yet!`
         }
